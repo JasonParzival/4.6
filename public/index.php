@@ -22,7 +22,7 @@
         $title = "";
         $template = "";
         $context = [];
-        $menu = [ // добавил список словариков
+        $nav = [ // добавил список словариков
             [
                 "title" => "Главная",
                 "url" => "/",
@@ -36,35 +36,72 @@
                 "url" => "/GLaDOS",
             ]
         ];
+        $menuWheatley = [
+            [
+                "btn" => "primary",
+                "title" => "Уитли",
+                "url" => "/wheatley",
+            ],
+            [
+                "btn" => "link",
+                "title" => "Картинка",
+                "url" => "/wheatley/image",
+            ],
+            [
+                "btn" => "link",
+                "title" => "Описание",
+                "url" => "/wheatley/info",
+            ]
+        ];
+
+        $menuGLaDOS = [
+            [
+                "btn" => "primary",
+                "title" => "ГЛэДОС",
+                "url" => "/GLaDOS",
+            ],
+            [
+                "btn" => "link",
+                "title" => "Картинка",
+                "url" => "/GLaDOS/image",
+            ],
+            [
+                "btn" => "link",
+                "title" => "Описание",
+                "url" => "/GLaDOS/info",
+            ]
+        ];
 
         // тут теперь просто заполняю значение переменных
         if ($url == "/") {
             $title = "Главная";
             $template = "main.twig";
-        } elseif (preg_match("#^/GLaDOS/image#", $url)) {
-            $title = "ГЛэДОС Картинка";
-            $template = "base_image2.twig";
-            $context['image'] = "/images/GLaDOS.gif";
-        } elseif (preg_match("#^/GLaDOS/info#", $url)) {
-            $title = "ГЛэДОС Цитата";
-            $template = "GLaDOS_info.twig";
         } elseif (preg_match("#^/GLaDOS#", $url)) {
             $title = "ГЛэДОС";
             $template = "GLaDOS.twig";
-        } elseif (preg_match("#/wheatley/image#", $url)) {
-            $title = "Уитли Картинка";
-            $template = "base_image1.twig";
-            $context['image'] = "../images/wheatley.jpg";
-        } elseif (preg_match("#/wheatley/info#", $url)) {
-            $title = "Уитли Цитата";
-            $template = "wheatley_info.twig";
-        } elseif (preg_match("#/wheatley#", $url)) {
+
+            if (preg_match("#^/GLaDOS/image#", $url)) {
+                $template = "base_image2.twig";
+                $context['image'] = "/images/GLaDOS.gif";
+            } elseif (preg_match("#^/GLaDOS/info#", $url)) {
+                $template = "GLaDOS_info.twig";
+            }
+        } elseif (preg_match("#^/wheatley#", $url)) {
             $title = "Уитли";
             $template = "wheatley.twig";
+
+            if (preg_match("#^/wheatley/image#", $url)) {
+                $template = "base_image1.twig";
+                $context['image'] = "../images/wheatley.jpg";
+            } elseif (preg_match("#^/wheatley/info#", $url)) {
+                $template = "wheatley_info.twig";
+            }
         }
 
         $context['title'] = $title;
-        $context['menu'] = $menu;
+        $context['nav'] = $nav;
+        $context['menuWheatley'] = $menuWheatley;
+        $context['menuGLaDOS'] = $menuGLaDOS;
 
         // ну и рендерю
         echo $twig->render($template, $context);

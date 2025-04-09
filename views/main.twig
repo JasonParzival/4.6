@@ -8,11 +8,18 @@
   <li class="list-group-item">
     <div class="container">
         <ul class="nav nav-pills">
-        <li class="nav-item">
+        {% for item in menuWheatley %}
+            <li class="nav-item">
+                <a class="btn btn-{{item.btn}}" href="{{item.url}}">{{item.title}}</a>
+            </li>
+        {% endfor %}
+        
+        <!--<li class="nav-item">
             <a class="btn btn-primary" href="/wheatley">
                 Уитли
             </a>
         </li>
+        
         <li class="nav-item">
             <a class="btn btn-link" href="/wheatley/image">
                 Картинка
@@ -22,14 +29,19 @@
             <a class="btn btn-link" href="/wheatley/info">
                 Описание
             </a>
-        </li>
+        </li>-->
         </ul>
     </div>
   </li>
   <li class="list-group-item">
     <div class="container">
         <ul class="nav nav-pills">
-        <li class="nav-item">
+        {% for item in menuGLaDOS %}
+            <li class="nav-item">
+                <a class="btn btn-{{item.btn}}" href="{{item.url}}">{{item.title}}</a>
+            </li>
+        {% endfor %}
+            <!--<li class="nav-item">
             <a class="btn btn-primary" href="/GLaDOS">
                 ГЛэДОС
             </a>
@@ -43,7 +55,7 @@
             <a class="btn btn-link" href="/GLaDOS/info">
                 Описание
             </a>
-        </li>
+        </li>-->
         </ul>
     </div>
   </li>
