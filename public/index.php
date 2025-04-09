@@ -22,27 +22,41 @@
         $title = "";
         $template = "";
         $context = [];
+        $menu = [ // добавил список словариков
+            [
+                "title" => "Главная",
+                "url" => "/",
+            ],
+            [
+                "title" => "Уитли",
+                "url" => "/wheatley",
+            ],
+            [
+                "title" => "ГЛэДОС",
+                "url" => "/GLaDOS",
+            ]
+        ];
 
         // тут теперь просто заполняю значение переменных
         if ($url == "/") {
             $title = "Главная";
             $template = "main.twig";
         } elseif (preg_match("#^/GLaDOS/image#", $url)) {
-            $title = "ГЛэДОС";
+            $title = "ГЛэДОС Картинка";
             $template = "base_image2.twig";
             $context['image'] = "/images/GLaDOS.gif";
         } elseif (preg_match("#^/GLaDOS/info#", $url)) {
-            $title = "ГЛэДОС";
+            $title = "ГЛэДОС Цитата";
             $template = "GLaDOS_info.twig";
         } elseif (preg_match("#^/GLaDOS#", $url)) {
             $title = "ГЛэДОС";
             $template = "GLaDOS.twig";
         } elseif (preg_match("#/wheatley/image#", $url)) {
-            $title = "Уитли";
+            $title = "Уитли Картинка";
             $template = "base_image1.twig";
             $context['image'] = "../images/wheatley.jpg";
         } elseif (preg_match("#/wheatley/info#", $url)) {
-            $title = "Уитли";
+            $title = "Уитли Цитата";
             $template = "wheatley_info.twig";
         } elseif (preg_match("#/wheatley#", $url)) {
             $title = "Уитли";
@@ -50,6 +64,7 @@
         }
 
         $context['title'] = $title;
+        $context['menu'] = $menu;
 
         // ну и рендерю
         echo $twig->render($template, $context);
