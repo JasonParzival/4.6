@@ -21,6 +21,7 @@
 
         $title = "";
         $template = "";
+        $temp = "";
         $context = [];
         $nav = [ // добавил список словариков
             [
@@ -72,6 +73,17 @@
             ]
         ];
 
+        $newnav = [
+            [
+                "title" => "Картинка",
+                "url" => "image",
+            ],
+            [
+                "title" => "Описание",
+                "url" => "info",
+            ]
+        ];
+
         // тут теперь просто заполняю значение переменных
         if ($url == "/") {
             $title = "Главная";
@@ -83,8 +95,10 @@
             if (preg_match("#^/GLaDOS/image#", $url)) {
                 $template = "base_image2.twig";
                 $context['image'] = "/images/GLaDOS.gif";
+                $temp = "Картинка";
             } elseif (preg_match("#^/GLaDOS/info#", $url)) {
                 $template = "GLaDOS_info.twig";
+                $temp = "Описание";
             }
         } elseif (preg_match("#^/wheatley#", $url)) {
             $title = "Уитли";
@@ -93,8 +107,10 @@
             if (preg_match("#^/wheatley/image#", $url)) {
                 $template = "base_image1.twig";
                 $context['image'] = "../images/wheatley.jpg";
+                $temp = "Картинка";
             } elseif (preg_match("#^/wheatley/info#", $url)) {
                 $template = "wheatley_info.twig";
+                $temp = "Описание";
             }
         }
 
@@ -102,6 +118,8 @@
         $context['nav'] = $nav;
         $context['menuWheatley'] = $menuWheatley;
         $context['menuGLaDOS'] = $menuGLaDOS;
+        $context['newnav'] = $newnav;
+        $context['temp'] = $temp;
 
         // ну и рендерю
         echo $twig->render($template, $context);

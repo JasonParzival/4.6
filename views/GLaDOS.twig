@@ -5,16 +5,23 @@
 
 <div class="container">
         <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link {{ href == '/GLaDOS/image' ? 'active' }}" href="/GLaDOS/image">
+        {% for item in newnav %}
+            <li class="nav-item">
+                <a class="nav-link {{ temp == item.title ? 'active' }}" href="/GLaDOS/{{item.url}}">
+                    {{item.title}}
+                </a>
+            </li>
+        {% endfor %}
+        <!--<li class="nav-item">
+            <a class="nav-link  href == '/GLaDOS/image' ? 'active' " href="/GLaDOS/image">
                 Картинка
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ title == 'Главная' ? 'active' }}" href="/GLaDOS/info">
+            <a class="nav-link  title == 'Главная' ? 'active' " href="/GLaDOS/info">
                 Описание
             </a>
-        </li>
+        </li>-->
         </ul>
 </div>
 

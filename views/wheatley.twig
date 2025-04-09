@@ -5,7 +5,14 @@
 
 <div class="container">
         <ul class="nav nav-pills">
-        <li class="nav-item">
+        {% for item in newnav %}
+            <li class="nav-item">
+                <a class="nav-link {{ temp == item.title ? 'active' }}" href="/wheatley/{{item.url}}">
+                    {{item.title}}
+                </a>
+            </li>
+        {% endfor %}
+        <!--<li class="nav-item">
             <a class="nav-link" href="/wheatley/image">
                 Картинка
             </a>
@@ -14,7 +21,7 @@
             <a class="nav-link" href="/wheatley/info">
                 Описание
             </a>
-        </li>
+        </li>-->
         </ul>
 </div>
 
