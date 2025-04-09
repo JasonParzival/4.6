@@ -1,0 +1,30 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+<h1>ГЛэДОС</h1>
+
+<div class="container">
+        <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="/GLaDOS/image">
+                Картинка
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/GLaDOS/info">
+                Описание
+            </a>
+        </li>
+        </ul>
+</div>
+
+<div style="margin-top: 15px;">
+        <ul class="list-group">
+                <li class="list-group-item">
+                    {% block dopcontent %}
+                        Выберите вверху информацию, которую хотите увидеть<br>
+                    {% endblock %}
+                </li>
+        </ul>
+</div>
+{% endblock %}
